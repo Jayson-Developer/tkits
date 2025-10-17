@@ -5,30 +5,137 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TotalKits — Tienda</title>
   <meta name="description" content="Tienda simple con compra por WhatsApp. Rápida, responsive y fácil de editar." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Estilos simples y modernos */
-    :root{--bg:#f7f7f8;--card:#ffffff;--accent:#111827;--muted:#6b7280;--primary:#111827}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;background:var(--bg);color:var(--accent)}
-    header{background:linear-gradient(90deg,#fff 0,#f3f4f6 100%);padding:18px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-    h1{font-size:16px;margin:0}
-    main{padding:20px;max-width:1100px;margin:0 auto}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(15,23,42,0.04)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
-    .price{font-weight:700;margin-top:8px}
-    .muted{color:var(--muted);font-size:13px}
-    .btn{display:inline-block;padding:10px 12px;border-radius:8px;text-decoration:none;background:#16a34a;color:#fff;font-weight:600}
-    .cart{position:fixed;right:18px;bottom:18px;background:#111827;color:#fff;padding:12px 14px;border-radius:12px;box-shadow:0 6px 18px rgba(17,24,39,0.2)}
-    .cart small{display:block;color:#e6e6e6;font-weight:600}
-    .cart-open{max-width:350px}
-    .cart-items{max-height:320px;overflow:auto;margin-top:10px}
-    .row{display:flex;gap:8px;align-items:center}
-    .qty{width:48px}
-    footer{padding:28px;text-align:center;color:var(--muted);font-size:14px}
-    @media(min-width:900px){header{padding:22px 40px}main{padding:40px}}
+    :root {
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --accent: #111827;
+      --muted: #6b7280;
+      --primary: #0f172a;
+      --green: #16a34a;
+      --green-dark: #15803d;
+    }
+    * {box-sizing: border-box;}
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--accent);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .muted { color: var(--muted); font-size: 13px; }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(15,23,42,0.12);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .card-content {
+      padding: 16px;
+    }
+    .price {
+      font-weight: 700;
+      margin-top: 8px;
+      color: var(--green-dark);
+    }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--green), var(--green-dark));
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .qty { width: 55px; padding: 4px; border-radius: 6px; border: 1px solid #d1d5db; }
+    select { padding: 4px; border-radius: 6px; border: 1px solid #d1d5db; }
+
+    .cart {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(17,24,39,0.2);
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
   </style>
 </head>
 <body>
@@ -37,33 +144,23 @@
       <div class="logo">TK</div>
       <div>
         <h1>TotalKits</h1>
-        <div class="muted">JerseysImportados y Retro — Compra por WhatsApp</div>
+        <div class="muted">Jerseys Importados y Retro</div>
       </div>
     </div>
-    <nav>
-      <a href="#catalogo" class="muted">Catálogo</a>
-    </nav>
+    <nav><a href="#catalogo" class="muted">Catálogo</a></nav>
   </header>
 
   <main>
     <section id="catalogo">
       <h2>Productos</h2>
-      <div class="grid" id="productGrid">
-        <!-- Productos generados por JS -->
-      </div>
+      <div class="grid" id="productGrid"></div>
     </section>
   </main>
 
-  <div class="cart" id="cartButton" title="Ver carrito">
-    <div class="row">
-      <div>
-        <small>Carrito</small>
-        <div id="cartCount">0 item(s)</div>
-      </div>
-    </div>
+  <div class="cart" id="cartButton">
+    🛒 <span id="cartCount">0 item(s)</span>
   </div>
 
-  <!-- Modal / panel simple del carrito -->
   <div id="cartPanel" style="display:none;position:fixed;right:18px;bottom:82px;background:var(--card);border-radius:12px;padding:16px;box-shadow:0 12px 36px rgba(15,23,42,0.15);width:320px;max-width:90%">
     <h3>Resumen del pedido</h3>
     <div class="cart-items" id="cartItems"></div>
@@ -79,49 +176,40 @@
   </div>
 
   <footer>
-    © TotalKits — Pago por WhatsApp — <span class="muted">No incluye envío</span>
+    © TotalKits — Compra por WhatsApp — <span class="muted">No incluye envío</span>
   </footer>
 
   <script>
-    // =================== CONFIG (edítalo) ===================
-    // Cambia el siguiente número por tu WhatsApp internacional sin signos ni espacios (ej: Peru +51 -> '51987654321')
     const WHATSAPP_NUMBER = '51987654321';
 
-    // Información de productos: id, nombre, precio (en PEN), imagen (ruta local o URL), talla, código
     const products = [
       {id:1,name:'Jersey Adidas x Oasis (25 Aniversario)',price:85,sku:'JER-AD-001',sizes:['S','M','L','XL'],img:'images/Liverpool_Home2026.jpg'},
       {id:2,name:'Camiseta Retro Zebra',price:75,sku:'CAM-RET-002',sizes:['M','L','XL'],img:'images/jersey2.jpg'},
       {id:3,name:'Jersey Alemania 2026 Player Version',price:90,sku:'JER-LIM-003',sizes:['M','L','XL'],img:'images/gorro.jpg'},
-      {id:4,name:'Gorro Limited',price:45,sku:'GOR-LIM-003',sizes:['Única'],img:'images/gorro.jpg'},
-      {id:5,name:'Gorro Limited',price:45,sku:'GOR-LIM-003',sizes:['Única'],img:'images/gorro.jpg'},
-      {id:6,name:'Gorro Limited',price:45,sku:'GOR-LIM-003',sizes:['Única'],img:'images/gorro.jpg'},
-      {id:7,name:'Gorro Limited',price:45,sku:'GOR-LIM-003',sizes:['Única'],img:'images/gorro.jpg'}
-    
+      {id:4,name:'Gorro Limited',price:45,sku:'GOR-LIM-003',sizes:['Única'],img:'images/gorro.jpg'}
     ];
-    // =======================================================
 
-    // Lógica simple de carrito (en memoria)
     let cart = [];
 
     function formatPrice(n){return 'S/' + Number(n).toFixed(2)}
 
-    // Render de productos
     const grid = document.getElementById('productGrid');
     products.forEach(p => {
-      const card = document.createElement('div'); card.className='card';
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.animation = 'fadeIn 0.3s ease';
       card.innerHTML = `
-        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Sin+imagen'"/>
-        <div style='margin-top:8px'>
-          <div style='font-weight:700'>${p.name}</div>
-          <div class='muted'>Código: ${p.sku}</div>
-          <div class='price'>${formatPrice(p.price)}</div>
-          <div style='margin-top:8px;display:flex;gap:8px;align-items:center'>
-            <select id='size-${p.id}'>${p.sizes.map(s=>`<option value="${s}">${s}</option>`).join('')}</select>
-            <input type='number' min='1' value='1' id='qty-${p.id}' class='qty' />
-            <button class='btn' onclick='addToCart(${p.id})'>Comprar</button>
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'"/>
+        <div class="card-content">
+          <div style="font-weight:700">${p.name}</div>
+          <div class="muted">Código: ${p.sku}</div>
+          <div class="price">${formatPrice(p.price)}</div>
+          <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+            <select id="size-${p.id}">${p.sizes.map(s=>`<option value="${s}">${s}</option>`).join('')}</select>
+            <input type="number" min="1" value="1" id="qty-${p.id}" class="qty" />
           </div>
-        </div>
-      `;
+          <button class="btn" style="margin-top:10px;width:100%" onclick="addToCart(${p.id})">Agregar al carrito</button>
+        </div>`;
       grid.appendChild(card);
     });
 
@@ -133,7 +221,6 @@
       if(existing){ existing.qty += qty; }
       else{ cart.push({pid,size,qty,price:product.price,name:product.name,sku:product.sku}); }
       updateCartUI();
-      showToast('Añadido al carrito');
     }
 
     function updateCartUI(){
@@ -144,63 +231,7 @@
       cart.forEach((it,idx)=>{
         total += it.qty * it.price;
         const el = document.createElement('div');
-        el.style.padding='8px 0';
         el.innerHTML = `
-          <div class='row' style='justify-content:space-between'>
-            <div>
-              <div style='font-weight:700'>${it.name}</div>
-              <div class='muted'>Talla: ${it.size} • ${it.qty} x ${formatPrice(it.price)}</div>
-            </div>
-            <div style='text-align:right'>
-              <div style='font-weight:700'>${formatPrice(it.qty*it.price)}</div>
-              <div style='margin-top:6px'><button onclick='removeItem(${idx})' class='muted' style='background:none;border:none;color:var(--muted);cursor:pointer'>Eliminar</button></div>
-            </div>
-          </div>
-        `;
-        document.getElementById('cartItems').appendChild(el);
-      });
-      document.getElementById('cartTotal').innerText = formatPrice(total);
-    }
-
-    function removeItem(index){ cart.splice(index,1); updateCartUI(); }
-
-    function showToast(msg){
-      const t = document.createElement('div');
-      t.innerText=msg; t.style.position='fixed'; t.style.left='50%'; t.style.bottom='120px'; t.style.transform='translateX(-50%)';
-      t.style.background='rgba(0,0,0,0.8)'; t.style.color='#fff'; t.style.padding='10px 14px'; t.style.borderRadius='10px'; t.style.zIndex=9999;
-      document.body.appendChild(t);
-      setTimeout(()=>t.remove(),1800);
-    }
-
-    // Toggle panel
-    const cartBtn = document.getElementById('cartButton');
-    const cartPanel = document.getElementById('cartPanel');
-    cartBtn.addEventListener('click',()=>{ cartPanel.style.display = cartPanel.style.display==='none' ? 'block' : 'none'; });
-
-    // Checkout: arma mensaje y abre WhatsApp
-    document.getElementById('checkoutBtn').addEventListener('click',()=>{
-      if(cart.length===0){ showToast('El carrito está vacío'); return; }
-      const lines = [];
-      lines.push('Hola! Quiero hacer un pedido desde la web.');
-      lines.push('---');
-      cart.forEach(it=>{
-        lines.push(`${it.qty} x ${it.name} (Talla: ${it.size}) - Código: ${it.sku} - S/${it.price.toFixed(2)}`);
-      });
-      const total = cart.reduce((s,i)=>s + i.qty*i.price,0);
-      lines.push('---');
-      lines.push(`Total: S/${total.toFixed(2)}`);
-      lines.push('Dirección de entrega:');
-      lines.push('Nombre:');
-      lines.push('Teléfono:');
-
-      const text = encodeURIComponent(lines.join('\n'));
-      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-      window.open(waUrl, '_blank');
-    });
-
-    // Inicializar UI
-    updateCartUI();
-
-  </script>
-</body>
-</html>
+          <div style='padding:6px 0;border-bottom:1px solid #eee'>
+            <div><b>${it.name}</b></div>
+            <div class='muted'>Talla: ${it.size} — ${it.qty} x ${form
