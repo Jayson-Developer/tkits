@@ -139,7 +139,29 @@
   </style>
 </head>
 <body>
-  <header>
+
+  <header class="sticky top-0 z-30 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    
+    <!-- BRAND -->
+    <div class="flex items-center gap-3">
+      <!-- 🔹 Logo como imagen -->
+      <img src="images/logo.png" alt="TotalKits Logo" class="w-12 h-12 rounded-lg object-contain" />
+      
+      <!-- 🔹 Nombre y descripción -->
+      <div>
+        <h1 class="text-lg font-semibold">TotalKits</h1>
+        <p class="text-xs text-gray-400 -mt-0.5">Jerseys Importados y Retro</p>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="text-sm text-gray-400">
+      <a href="#catalogo" class="hover:text-white">Catálogo</a>
+    </nav>
+  </div>
+</header>
+  <!-- <header> 
     <div class="brand">
       <div class="logo">TK</div>
       <div>
@@ -148,7 +170,7 @@
       </div>
     </div>
     <nav><a href="#catalogo" class="muted">Catálogo</a></nav>
-  </header>
+  </header> -->
 
   <main>
     <section id="catalogo">
@@ -180,7 +202,7 @@
   </footer>
 
   <script>
-    const WHATSAPP_NUMBER = '51987654321';
+    const WHATSAPP_NUMBER = '51987496977';
 
     const products = [
       {id:1,name:'Jersey Adidas x Oasis (25 Aniversario)',price:85,sku:'JER-AD-001',sizes:['S','M','L','XL'],img:'images/Liverpool_Home2026.jpg'},
